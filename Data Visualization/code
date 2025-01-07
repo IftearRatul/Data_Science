@@ -1,0 +1,201 @@
+mydata<-read.csv("C:/data_science/Dataset.csv", header = TRUE, sep = ",")
+mydata
+names(mydata)
+summary(mydata)
+str(mydata)
+is.na(mydata)
+colSums(is.na(mydata))
+vis_miss(mydata)
+library(visdat)
+vis_miss(mydata)
+mydata<-read.csv("C:/data_science/Dataset.csv", header = TRUE, sep = ",")
+mydata
+names(mydata)
+str(mydata)
+summary(mydata)
+mydata$creatinine_phosphokinase[mydata$creatinine_phosphokinase=="55X"]<-NA
+mydata$creatinine_phosphokinase<- as.numeric(mydata$creatinine_phosphokinase)
+str(mydata)
+is.na(mydata)
+colSums(is.na(mydata))
+library(visdat)
+vis_miss(mydata)
+mydata$age<- ifelse(is.na(mydata$age), mean(mydata$age, na.rm = TRUE), mydata$age)
+colSums(is.na(mydata))
+mydata$anaemia<- ifelse(is.na(mydata$anaemia), median(mydata$anaemia, na.rm = TRUE), mydata$anaemia)
+colSums(is.na(mydata))
+mydata_creatinine_phosphokinase<- ifelse(is.na(mydata$creatinine_phosphokinase), mean(mydata$creatinine_phosphokinase, na.rm = TRUE), mydata$creatinine_phosphokinase)
+colSums(is.na(mydata))
+mydata$diabetes<- ifelse(is.na(mydata$diabetes), mode(mydata$diabetes), mydata$diabetes)
+colSums(is.na(mydata))
+mydata$platelets<- ifelse(is.na(mydata$platelets), mean(mydata$platelets, na.rm = TRUE), mydata$platelets)
+colSums(is.na(mydata))
+mydata<- mydata[!is.na(mydata$smoking),]
+colSums(is.na(mydata))
+mydata_creatinine_phosphokinase<- ifelse(is.na(mydata$creatinine_phosphokinase), mean(mydata$creatinine_phosphokinase, na.rm = TRUE), mydata$creatinine_phosphokinase)
+colSums(is.na(mydata))
+mydata$creatinine_phosphokinase<- ifelse(is.na(mydata$creatinine_phosphokinase), mean(mydata$creatinine_phosphokinase, na.rm = TRUE), mydata$creatinine_phosphokinase)
+colSums(is.na(mydata))
+library(visdat)
+vis_miss(mydata)
+library(ggplot2)
+library(dplyr)
+numeric_attributes <- data %>%
+select_if(is.numeric)
+numeric_attributes <- data %>%
+select_if(is.numeric)
+numeric_attributes <- data %>%
+select_if(is.numeric)
+install.packages("ggplot2")
+install.packages("ggplot2")
+install.packages("ggplot2")
+install.packages("ggplot2")
+numeric_attributes <- data %>%
+select_if(is.numeric)
+numeric_attributes <- mydata %>%
+select_if(is.numeric)
+numeric_attributes <- mydata %>%
+select_if(is.numeric)
+install.packages("dplyr")
+install.packages("dplyr")
+install.packages("dplyr")
+library(dplyr)
+numeric_attributes <- mydata %>%
+numeric_attributes <- mydata %>%
+select_if(is.numeric)
+select_if(is.numeric)
+summary_stats <- mydata.frame(Attribute = character(), Value = numeric(), Statistic = character(), stringsAsFactors = FALSE)
+diabetes_mode<- names(sort(table(data$diabetes), decreasing = TRUE))[1]
+diabetes_mode<- names(sort(table(mydata$diabetes), decreasing = TRUE))[1]
+mydata$diabetes<- ifelse(is.na(mydata$diabetes), diabetes_mode, mydata$diabetes)
+colSums(is.na(mydata))
+numeric_attributes <- mydata %>%
+select_if(is.numeric)
+numeric_attributes <- mydata %>%
+select_if(is.numeric)
+summary_stats <- mydata.frame(Attribute = character(), Value = numeric(), Statistic = character(), stringsAsFactors = FALSE)
+summary_stats <- mydata.frame(Attribute = character(), Value = numeric(), Statistic = character(), stringsAsFactors = FALSE)
+library(dplyr)
+numeric_attributes <- mydata %>%
+select_if(is.numeric)
+summary_stats <- mydata.frame(Attribute = character(), Value = numeric(), Statistic = character(), stringsAsFactors = FALSE)
+library(ggplot2)
+numeric_attributes <- mydata %>%
+select_if(is.numeric)
+summary_stats <- mydata.frame(Attribute = character(), Value = numeric(), Statistic = character(), stringsAsFactors = FALSE)
+summary_stats <- mydata.frame(Attribute = character(), Value = numeric(), Statistic = character(), stringsAsFactors = FALSE)
+numeric_attributes <- mydata %>%
+select_if(is.numeric)
+summary_stats <- data.frame(Attribute = character(), Value = numeric(), Statistic = character(), stringsAsFactors = FALSE)
+for (col in colnames(numeric_attributes)) {
+if (is.numeric(mydata[[col]])) {
+mean_val <- mean(mydata[[col]], na.rm = TRUE)
+median_val <- median(mydata[[col]], na.rm = TRUE)
+mode_val <- names(sort(table(mydata[[col]]), decreasing = TRUE))[1]
+summary_stats <- rbind(summary_stats, mydata.frame(Attribute = col, Value = mean_val, Statistic = "Mean"))
+summary_stats <- rbind(summary_stats, mydata.frame(Attribute = col, Value = median_val, Statistic = "Median"))
+summary_stats <- rbind(summary_stats, mydata.frame(Attribute = col, Value = mode_val, Statistic = "Mode"))
+}
+}
+numeric_attributes <- mydata %>%
+select_if(is.numeric)
+summary_stats <- data.frame(Attribute = character(), Value = numeric(), Statistic = character(), stringsAsFactors = FALSE)
+for (col in colnames(numeric_attributes)) {
+if (is.numeric(mydata[[col]])) {
+mean_val <- mean(mydata[[col]], na.rm = TRUE)
+median_val <- median(mydata[[col]], na.rm = TRUE)
+mode_val <- names(sort(table(mydata[[col]]), decreasing = TRUE))[1]
+summary_stats <- rbind(summary_stats, data.frame(Attribute = col, Value = mean_val, Statistic = "Mean"))
+summary_stats <- rbind(summary_stats, data.frame(Attribute = col, Value = median_val, Statistic = "Median"))
+summary_stats <- rbind(summary_stats, data.frame(Attribute = col, Value = mode_val, Statistic = "Mode"))
+}
+}
+summary_stats$Attribute <- factor(summary_stats$Attribute, levels = colnames(numeric_attributes))
+summary_plot <- ggplot(summary_stats, aes(x = Attribute, y = Value, fill = Statistic)) +
+geom_bar(stat = "identity", position = "dodge", width = 0.7) +
+labs(title = "Summary Statistics for Numeric Attributes", x = "Attribute", y = "Value") +
+theme_bw() +
+theme(legend.title = element_blank())
+print(summary_plot)
+age_ranges<- c(0, 30, 50, Inf)
+age_lebels<- c("Young", "Middle Age", "Old")
+mydata$age<- cut(mydata$age, breaks = age_ranges, lebels = age_lebels, include.lowest = TRUE)
+head(mydata)
+age_ranges<- c(0, 30, 50, Inf)
+age_lebels<- c("Young", "Middle Age", "Old")
+mydata$age<- cut(mydata$age, breaks = age_ranges, lebels = age_lebels, include.lowest = TRUE)
+age_ranges<- c(0, 30, 50, Inf)
+age_labels<- c("Young", "Middle Age", "Old")
+mydata$age<- cut(mydata$age, breaks = age_ranges, labels = age_labels, include.lowest = TRUE)
+age_ranges<- c(0, 30, 50, Inf)
+age_labels<- c("Young", "Middle Age", "Old")
+mydata$age<- cut(mydata$age, breaks = age_ranges, labels = age_labels, include.lowest = TRUE)
+mydata$age<- cut(mydata$age, breaks = age_ranges, labels = age_labels, include.lowest = TRUE)
+mydata$age<- cut(data$age, breaks = age_ranges, labels = age_labels, include.lowest = TRUE)
+mydata$age<- cut(mydata$age, breaks = age_ranges, labels = age_labels, include.lowest = TRUE)
+mydata$age<- cut(mydata$age, breaks = age_ranges, labels = age_labels, include.lowest = TRUE)
+mydata$platelets<- (mydata$platelets - min(mydata$platelets, na.rm = TRUE)) / max(mydata$platelets, na.rm = TRUE) - min(mydata$platelets, na.rm = TRUE)
+print(mydata$platelets)
+head(mydata)
+age_labels<- c("Young", "Middle Age", "Old")
+mydata$age<- cut(mydata$age, breaks = age_ranges, labels = age_labels, include.lowest = TRUE)
+age_ranges<- c(0, 30, 50, Inf)
+age_labels<- c("Young", "Middle Age", "Old")
+mydata$age<- cut(mydata$age, breaks = age_ranges, labels = age_labels, include.lowest = TRUE)
+head(mydata)
+age_lebels<- c("Young", "Middle Age", "Old")
+mydata$age<- cut(mydata$age, breaks = age_ranges, labels = age_lebels, include.lowest = TRUE)
+mydata$age<- as.numeric(mydata$age)
+age_ranges<- c(0, 30, 50, Inf)
+age_labels<- c("Young", "Middle Age", "Old")
+mydata$age<- cut(mydata$age, breaks = age_ranges, labels = age_labels, include.lowest = TRUE)
+head(mydata)
+boxplot(mydata$time,
+main= "Boxplot before removing outlier of time",
+ylab="time",
+col="red",
+border="black",
+horizontal = TRUE)
+boxplot(mydata$serum_creatinine,
+main= "Boxplot before removing outlier of serum_creatinine",
+ylab="serum_creatinine",
+col="red",
+border="black",
+horizontal = TRUE)
+boxplot(mydata$serum_creatinine,
+main= "Boxplot before removing outlier of serum_creatinine",
+xlab="serum_creatinine",
+col="red",
+border="black",
+horizontal = TRUE)
+boxplot(mydata$serum_creatinine,
+main= "Boxplot before removing outlier of serum_creatinine",
+xlab="serum_creatinine",
+col="red",
+border="pink",
+horizontal = TRUE)
+boxplot(mydata$serum_creatinine,
+main= "Boxplot before removing outlier of serum_creatinine",
+xlab="serum_creatinine",
+col="red",
+border="magenta",
+horizontal = TRUE)
+remove_outliers <- function(x) {
+q1 <- quantile(x, 0.25)
+q3 <- quantile(x, 0.75)
+iqr <- q3-q1
+lower_bound<- q1-1.5* iqr
+upper_bound<- q3+1.5*iqr
+x_no_outliers<- x[x>=lower_bound & x<=upper_bound]
+return(x_no_outliers)
+}
+mydata_clean<-mydata[!mydata$serum_creatinine %n% remove_outliers(mydata$serum_creatinine)]
+mydata_clean<-mydata[!mydata$serum_creatinine %in% remove_outliers(mydata$serum_creatinine)]
+mydata_clean<-mydata[!mydata$serum_creatinine %in% remove_outliers(mydata$serum_creatinine)]
+mydata_clean<-mydata[!mydata$serum_creatinine %in% remove_outliers(mydata$serum_creatinine),]
+boxplot(mydata_clean$serum_creatinine,
+main= "Boxplot after removing outlier of serum_creatinine",
+ylab="serum_creatinine",
+col="red",
+border="magenta",
+horizontal = TRUE)
