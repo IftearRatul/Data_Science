@@ -1,0 +1,1 @@
+Data Science Report and Project. What have done here- Data cleaning, preprocessing, handle missing value, remove noisy values, apply mean, median and mood, visulaization techniques, identifies outliars
